@@ -21,7 +21,7 @@ def thread(): # this function takes care of every client
             print("incoming connection : {}:{}".format(*a))
             print("recv: ",c.recv(1028).split(b'\n', 1)[0].strip())
             c.send(b"HTTP/1.0 200 OK\r\nServer: Python/3\r\nContent-Type: image/png\r\n\r\n")
-            img = BytesIO()
+            img = BytesIO() # create a file stream to save the file in
             image.grab().save(img, "PNG") # convert the image to PNG and save it to a stream
             c.send(img.getvalue())
             c.close()
